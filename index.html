@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulta Espiritual - Maestro Kael</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: url('recuperacion/img/img1.webp');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #080808;
+    }
+
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+
+    .glass {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+    }
+  </style>
+
+  <script>
+    (function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e); t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '594728869711090');
+
+    // ANTI-DUPLICADOS
+    window._pvfired = false;
+    window._vcfired = false;
+
+    function firePageView() {
+      if (!window._pvfired) {
+        fbq('track', 'PageView');
+        window._pvfired = true;
+      }
+    }
+    function fireViewContent() {
+      if (!window._vcfired) {
+        fbq('track', 'ViewContent');
+        window._vcfired = true;
+      }
+    }
+
+    firePageView();
+    fireViewContent();
+    document.addEventListener('touchstart', firePageView);
+    document.addEventListener('scroll', firePageView);
+    document.addEventListener('DOMContentLoaded', firePageView);
+
+    setTimeout(() => {
+      firePageView();
+      fireViewContent();
+    }, 900);
+  </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=594728869711090&ev=PageView&noscript=1" />
+  </noscript>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WY803T814Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WY803T814Q');
+  </script>
+
+</head>
+
+<body class="text-white">
+
+  <div class="fixed top-0 left-0 right-0 bg-black/70 border-b border-yellow-500/40 py-2 text-center z-50">
+    <p class="font-cinzel text-yellow-300 text-sm animate-pulse">
+      ⚠️ ÚLTIMAS CONSULTAS ESPIRITUALES DISPONIBLES HOY ⚠️
+    </p>
+  </div>
+
+  <div class="h-16"></div>
+
+  <section class="text-center px-4 mt-6">
+    <h1 class="font-cinzel text-4xl font-bold text-yellow-400 drop-shadow-lg">
+      ♆ MAESTRO KAEL ♆
+    </h1>
+
+    <p class="mt-3 text-yellow-100 text-sm">
+      Si estás leyendo esto… no es casualidad. Tu energía te trajo aquí.
+    </p>
+
+    <a href="#formulario"
+      class="inline-block mt-4 bg-green-500 text-black font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition">
+      ✨ Solicitar mi consulta ahora
+    </a>
+  </section>
+
+  <section id="formulario" class="mt-8 px-4">
+    <div class="max-w-md mx-auto rounded-xl glass border border-yellow-600/40 p-6 shadow-xl">
+
+      <h2 class="font-cinzel text-2xl text-yellow-400 text-center mb-5">
+        Solicita tu consulta gratuita
+      </h2>
+
+      <form id="leadForm1" class="space-y-4">
+
+        <div>
+          <label class="text-yellow-300 text-sm font-semibold">Nombre completo</label>
+          <input name="nombre" required placeholder="Para conectar con tu energía"
+            class="w-full mt-1 px-4 py-3 bg-black/60 border border-yellow-700 rounded-md focus:ring-2 focus:ring-yellow-400" />
+        </div>
+
+        <div>
+          <label class="text-yellow-300 text-sm font-semibold">Cuéntame qué está pasando en tu relación</label>
+          <textarea name="caso" required rows="4" placeholder="Describe brevemente lo que estás viviendo…"
+            class="w-full mt-1 px-4 py-3 bg-black/60 border border-yellow-700 rounded-md focus:ring-2 focus:ring-yellow-400"></textarea>
+        </div>
+
+        <div>
+          <label class="text-yellow-300 text-sm font-semibold">WhatsApp</label>
+          <input name="celular" required placeholder="El Maestro te escribirá ahí"
+            class="w-full mt-1 px-4 py-3 bg-black/60 border border-yellow-700 rounded-md focus:ring-2 focus:ring-yellow-400" />
+        </div>
+
+        <button type="submit"
+          class="w-full py-3 mt-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold rounded-lg shadow-lg hover:scale-105 transition">
+          ✨ Enviar mi consulta
+        </button>
+
+        <p id="respuesta-form-1" class="hidden text-center text-sm mt-3"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="max-w-md mx-auto mt-10 px-4 glass border border-yellow-600/40 p-6 rounded-xl shadow-lg">
+    <h2 class="font-cinzel text-yellow-400 text-2xl text-center mb-4">
+      ¿Te identificas con este sufrimiento?
+    </h2>
+
+    <p class="text-yellow-100 text-sm leading-relaxed">
+      🔥 Te bloqueó sin explicación.<br>
+      🔥 Sientes que una tercera persona se metió entre ustedes.<br>
+      🔥 La indiferencia te está consumiendo.<br>
+      🔥 Extrañas a quien amas con todo tu corazón.<br>
+      🔥 Sientes que el destino te arrebató la felicidad.<br>
+    </p>
+  </section>
+
+  <section class="max-w-md mx-auto mt-10 px-4 glass border border-yellow-600/40 p-6 rounded-xl shadow-lg">
+    <h2 class="font-cinzel text-yellow-400 text-2xl text-center mb-4">¿Quién es el Maestro Kael?</h2>
+    <p class="text-yellow-100 text-sm leading-relaxed">
+      Con más de <span class="text-yellow-400 font-bold">30 años</span> guiando energías, he ayudado a miles de personas
+      a recuperar un amor perdido, abrir caminos cerrados y romper bloqueos invisibles.
+    </p>
+  </section>
+
+  <section class="max-w-md mx-auto mt-10 px-4 glass border border-yellow-600/40 p-6 rounded-xl shadow-lg">
+    <h2 class="font-cinzel text-yellow-400 text-2xl text-center mb-4">Tu consulta incluye:</h2>
+
+    <ul class="text-yellow-100 text-sm leading-relaxed space-y-2">
+      <li>✔ Diagnóstico espiritual de tu caso</li>
+      <li>✔ Lectura energética personalizada</li>
+      <li>✔ Revisión de bloqueos y terceros</li>
+      <li>✔ Evaluación del vínculo con tu persona especial</li>
+      <li>✔ Recomendación del ritual adecuado</li>
+      <li>✔ Privacidad y absoluta confidencialidad</li>
+    </ul>
+  </section>
+
+  <section class="max-w-md mx-auto mt-10 px-4 glass border border-yellow-600/40 p-6 rounded-xl shadow-lg">
+    <h2 class="font-cinzel text-yellow-400 text-2xl text-center mb-4">
+      Da el último paso para tu consulta
+    </h2>
+
+    <p class="text-yellow-100 text-sm text-center mb-4">
+      Envía tus datos y serás redirigido automáticamente a WhatsApp.
+    </p>
+
+    <form id="leadForm2" class="space-y-4">
+
+      <div>
+        <label class="text-yellow-300 text-sm font-semibold">Nombre completo</label>
+        <input name="nombre" required placeholder="Para conectar con tu energía"
+          class="w-full mt-1 px-4 py-3 bg-black/60 border border-yellow-700 rounded-md focus:ring-2 focus:ring-yellow-400" />
+      </div>
+
+      <div>
+        <label class="text-yellow-300 text-sm font-semibold">Cuéntame qué está pasando en tu relación</label>
+        <textarea name="caso" required rows="4" placeholder="Describe lo que estás viviendo…"
+          class="w-full mt-1 px-4 py-3 bg-black/60 border border-yellow-700 rounded-md focus:ring-2 focus:ring-yellow-400"></textarea>
+      </div>
+
+      <div>
+        <label class="text-yellow-300 text-sm font-semibold">WhatsApp</label>
+        <input name="celular" required placeholder="El Maestro te escribirá ahí"
+          class="w-full mt-1 px-4 py-3 bg-black/60 border border-yellow-700 rounded-md focus:ring-2 focus:ring-yellow-400" />
+      </div>
+
+      <button type="submit"
+        class="w-full py-3 mt-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold rounded-lg shadow-lg hover:scale-105 transition">
+        💬 Enviar y abrir WhatsApp
+      </button>
+
+      <p id="respuesta-form-2" class="hidden text-center text-sm mt-3"></p>
+    </form>
+  </section>
+
+  <section class="max-w-md mx-auto mt-10 px-4 glass border border-yellow-600/40 p-6 rounded-xl shadow-lg text-center">
+    <h2 class="text-red-500 font-cinzel text-xl mb-3">
+      ⚠️ Últimas consultas disponibles hoy
+    </h2>
+    <p class="text-yellow-100 text-sm">
+      Si ves este mensaje, aún hay un cupo disponible.
+    </p>
+  </section>
+
+  <section class="text-center mt-8 mb-10">
+    <a href="#formulario"
+      class="inline-block px-8 py-3 bg-green-500 text-black font-bold rounded-lg shadow-lg hover:scale-105 transition">
+      ✨ Solicitar consulta ahora
+    </a>
+  </section>
+
+  <p class="text-center text-xs text-yellow-200/70 mb-6 font-cinzel">
+    © 2025 Maestro Kael — Todos los derechos reservados
+  </p>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const forms = [
+        { id: 'leadForm1', respId: 'respuesta-form-1' },
+        { id: 'leadForm2', respId: 'respuesta-form-2' }
+      ];
+
+      // Mensaje profesional para WhatsApp
+      const waMessage = "🔮 Hola Maestro Kael, solicito una consulta espiritual.\n\n✨ Mis datos:";
+      const waBase = "https://wa.me/526611310397?text=";
+
+      forms.forEach(cfg => {
+        const form = document.getElementById(cfg.id);
+        const btn = form.querySelector("button");
+        const respuesta = document.getElementById(cfg.respId);
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          // Validar que los campos no estén vacíos
+          const nombre = form.nombre.value.trim();
+          const caso = form.caso.value.trim();
+          const celular = form.celular.value.trim();
+
+          if (!nombre || !caso || !celular) {
+            respuesta.innerText = "⚠️ Por favor completa todos los campos.";
+            respuesta.className = "text-yellow-400 text-center text-sm mt-3";
+            respuesta.classList.remove("hidden");
+            return;
+          }
+
+          // Tracking de conversión en Facebook
+          if (typeof fbq !== "undefined") fbq('track', 'Lead');
+
+          // Mensaje profesional y estructurado para WhatsApp
+          const waText = waMessage +
+            "\n📝 Nombre: " + nombre +
+            "\n📱 WhatsApp: " + celular +
+            "\n\n💬 Situación:\n" + caso +
+            "\n\n🙏 Espero su respuesta. Gracias.";
+
+          const waUrl = waBase + encodeURIComponent(waText);
+
+          // Mostrar mensaje y redireccionar
+          btn.disabled = true;
+          respuesta.innerText = "✅ Abriendo WhatsApp...";
+          respuesta.className = "text-green-400 text-center text-sm mt-3 font-semibold";
+          respuesta.classList.remove("hidden");
+
+          // Redireccionar a WhatsApp
+          setTimeout(() => {
+            window.location.href = waUrl;
+          }, 800);
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
