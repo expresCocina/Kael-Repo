@@ -311,7 +311,8 @@
     // Función para enviar a Conversions API a través de nuestro proxy seguro en Vercel
     async function sendCAPIEvent(eventName, sourceUrl = window.location.href) {
       try {
-        fetch('/api/capi', {
+        console.log(`Enviando evento CAPI: ${eventName}...`);
+        const res = await fetch('/api/capi', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -320,10 +321,13 @@
             eventName: eventName,
             sourceUrl: sourceUrl 
           })
-        }).catch(err => console.log('Error delegando a CAPI backend:', err));
+        });
+        
+        const data = await res.json();
+        console.log('Respuesta de servidor CAPI Vercel:', data);
         
       } catch(e) {
-        console.log('Error preparando CAPI local:', e);
+        console.error('Error delegando a CAPI backend:', e);
       }
     }
 
