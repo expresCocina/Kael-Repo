@@ -310,7 +310,19 @@
 
     // Función para botones directos
     function openDirectWA(source) {
-      if (typeof fbq !== "undefined") fbq('track', 'Contact');
+      // Tracking Facebook
+      if (typeof fbq !== "undefined") {
+        fbq('track', 'Contact');
+        fbq('trackCustom', 'Click_whasap', { source: source });
+      }
+      
+      // Tracking Google Analytics
+      if (typeof gtag !== "undefined") {
+        gtag('event', 'Click_whasap', {
+          'event_category': 'Engagement',
+          'event_label': source
+        });
+      }
       
       const waUrl = "https://wa.me/" + NUMERO_WA + "?text=" + encodeURIComponent(MENSAJE_DIRECTO);
       window.location.href = waUrl;
@@ -342,8 +354,18 @@
           return;
         }
 
-        // Tracking Lead
-        if (typeof fbq !== "undefined") fbq('track', 'Lead');
+        // Tracking Lead & Click_whasap
+        if (typeof fbq !== "undefined") {
+          fbq('track', 'Lead');
+          fbq('trackCustom', 'Click_whasap', { source: 'Formulario de Cierre' });
+        }
+        
+        if (typeof gtag !== "undefined") {
+          gtag('event', 'Click_whasap', {
+            'event_category': 'Engagement',
+            'event_label': 'Formulario de Cierre'
+          });
+        }
 
         // Mensaje estructurado
         const waText = "🔮 Hola, solicito una consulta espiritual.\n\n✨ Mis datos:\n📝 Nombre: " + nombre + "\n\n💬 Mi situación:\n" + caso;
