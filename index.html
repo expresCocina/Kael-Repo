@@ -307,10 +307,46 @@
     // Configuración centralizada
     const NUMERO_WA = "526611127928";
     const MENSAJE_DIRECTO = "Hola, estoy interesado en una consulta espiritual 🔮";
+    const PIXEL_ID = "594728869711090";
+    const CAPI_TOKEN = "EAAJB7NRuFGUBRCtzCTpjyztkqjxTkntz5qihy9jBbqcG74oXg7kwof3KQKJXc4AEFuqewLi73LxOPL156qkjXxZBDqfztumXNLvGbQlR08iCKE6RX9Ogd0WkcJgjUeedxWXJyiF5TRyvZBmdZBX3msNnQeyQeS2XT0h0UrldsZCvaU7VmZAsobylZBvqT8jQZDZD";
+
+    // Función para enviar a Conversions API (CAPI) desde frontend
+    // NOTA: Normalmente CAPI se hace desde el backend, pero esto enviará el evento directamente
+    async function sendCAPIEvent(eventName, sourceUrl = window.location.href) {
+      try {
+        const payload = {
+          data: [
+            {
+              event_name: eventName,
+              event_time: Math.floor(Date.now() / 1000),
+              event_source_url: sourceUrl,
+              action_source: "website",
+              user_data: {
+                client_user_agent: navigator.userAgent
+              }
+            }
+          ]
+        };
+
+        fetch(`https://graph.facebook.com/v19.0/${PIXEL_ID}/events?access_token=${CAPI_TOKEN}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        }).catch(err => console.log('CAPI Error:', err));
+        
+      } catch(e) {
+        console.log('Error preparando CAPI:', e);
+      }
+    }
+
+    // Enviamos un PageView al CAPI en la primera carga
+    sendCAPIEvent('PageView');
 
     // Función para botones directos
     function openDirectWA(source) {
-      // Tracking Facebook
+      // Tracking Facebook Pixel
       if (typeof fbq !== "undefined") {
         fbq('track', 'Contact');
         fbq('trackCustom', 'Click_whasap', { source: source });
@@ -323,6 +359,9 @@
           'event_label': source
         });
       }
+
+      // Tracking CAPI
+      sendCAPIEvent('Click_whasap');
       
       const waUrl = "https://wa.me/" + NUMERO_WA + "?text=" + encodeURIComponent(MENSAJE_DIRECTO);
       window.location.href = waUrl;
@@ -333,8 +372,8 @@
       
       // Simulación de escasez
       const countEl = document.getElementById('countdown');
-      setTimeout(() => { countEl.innerText = '3'; }, 15000); // Baja a 3 después de 15s
-      setTimeout(() => { countEl.innerText = '2'; }, 45000); // Baja a 2 después de 45s
+      setTimeout(() => { countEl.innerText = '3'; }, 15000); 
+      setTimeout(() => { countEl.innerText = '2'; }, 45000); 
 
       // Formulario
       const form = document.getElementById('leadForm1');
@@ -354,18 +393,22 @@
           return;
         }
 
-        // Tracking Lead & Click_whasap
+        // Tracking Lead & Click_whasap (Pixel)
         if (typeof fbq !== "undefined") {
           fbq('track', 'Lead');
           fbq('trackCustom', 'Click_whasap', { source: 'Formulario de Cierre' });
         }
         
+        // Tracking GA
         if (typeof gtag !== "undefined") {
           gtag('event', 'Click_whasap', {
             'event_category': 'Engagement',
             'event_label': 'Formulario de Cierre'
           });
         }
+
+        // Tracking CAPI
+        sendCAPIEvent('Click_whasap');
 
         // Mensaje estructurado
         const waText = "🔮 Hola, solicito una consulta espiritual.\n\n✨ Mis datos:\n📝 Nombre: " + nombre + "\n\n💬 Mi situación:\n" + caso;
