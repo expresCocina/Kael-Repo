@@ -307,37 +307,23 @@
     // Configuración centralizada
     const NUMERO_WA = "526611127928";
     const MENSAJE_DIRECTO = "Hola, estoy interesado en una consulta espiritual 🔮";
-    const PIXEL_ID = "594728869711090";
-    const CAPI_TOKEN = "EAAJB7NRuFGUBRCtzCTpjyztkqjxTkntz5qihy9jBbqcG74oXg7kwof3KQKJXc4AEFuqewLi73LxOPL156qkjXxZBDqfztumXNLvGbQlR08iCKE6RX9Ogd0WkcJgjUeedxWXJyiF5TRyvZBmdZBX3msNnQeyQeS2XT0h0UrldsZCvaU7VmZAsobylZBvqT8jQZDZD";
 
-    // Función para enviar a Conversions API (CAPI) desde frontend
-    // NOTA: Normalmente CAPI se hace desde el backend, pero esto enviará el evento directamente
+    // Función para enviar a Conversions API a través de nuestro proxy seguro en Vercel
     async function sendCAPIEvent(eventName, sourceUrl = window.location.href) {
       try {
-        const payload = {
-          data: [
-            {
-              event_name: eventName,
-              event_time: Math.floor(Date.now() / 1000),
-              event_source_url: sourceUrl,
-              action_source: "website",
-              user_data: {
-                client_user_agent: navigator.userAgent
-              }
-            }
-          ]
-        };
-
-        fetch(`https://graph.facebook.com/v19.0/${PIXEL_ID}/events?access_token=${CAPI_TOKEN}`, {
+        fetch('/api/capi', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(payload)
-        }).catch(err => console.log('CAPI Error:', err));
+          body: JSON.stringify({ 
+            eventName: eventName,
+            sourceUrl: sourceUrl 
+          })
+        }).catch(err => console.log('Error delegando a CAPI backend:', err));
         
       } catch(e) {
-        console.log('Error preparando CAPI:', e);
+        console.log('Error preparando CAPI local:', e);
       }
     }
 
